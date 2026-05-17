@@ -237,16 +237,16 @@
 <body>
 
 <nav class="nav">
-  <a href="Top Crop.html" class="nav-wordmark">Top Crop<sup style="font-family: var(--mono); font-size: 9px; letter-spacing: .2em; margin-left: 6px; vertical-align: super;">TZ</sup></a>
+  <a href="/" class="nav-wordmark">Top Crop<sup style="font-family: var(--mono); font-size: 9px; letter-spacing: .2em; margin-left: 6px; vertical-align: super;">TZ</sup></a>
   <div style="display:flex;align-items:center;">
     <div class="nav-links">
-      <a class="nav-link" href="Top Crop.html#about">About<span class="nav-link__line"></span></a>
-      <a class="nav-link" href="Top Crop.html#team">Team<span class="nav-link__line"></span></a>
-      <a class="nav-link" href="Top Crop.html#careers">Careers<span class="nav-link__line"></span></a>
-      <a class="nav-link" href="Top Crop.html#news">News<span class="nav-link__line"></span></a>
-      <a class="nav-link" href="Top Crop.html#contact">Contact<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="/#about">About<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="/#team">Team<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="/#careers">Careers<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="/#news">News<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="/#contact">Contact<span class="nav-link__line"></span></a>
     </div>
-    <a class="nav-cta" href="Top Crop.html#contact">Get in touch →</a>
+    <a class="nav-cta" href="/#contact">Get in touch →</a>
   </div>
 </nav>
 
@@ -313,11 +313,11 @@
       </div>
       <div>
         <h5>Site</h5>
-        <a href="Top Crop.html#about">About</a>
-        <a href="Top Crop.html#team">Team</a>
-        <a href="Top Crop.html#careers">Careers</a>
-        <a href="Top Crop.html#news">News</a>
-        <a href="Top Crop.html#contact">Contact</a>
+        <a href="/#about">About</a>
+        <a href="/#team">Team</a>
+        <a href="/#careers">Careers</a>
+        <a href="/#news">News</a>
+        <a href="/#contact">Contact</a>
       </div>
       <div>
         <h5>Reach us</h5>
@@ -336,7 +336,7 @@
   </div>
 </footer>
 
-<script src="careers-data.js"></script>
+<script src="/careers-data.js"></script>
 <script>
   const params = new URLSearchParams(location.search);
   const slug = params.get("id");
@@ -381,7 +381,7 @@
     .forEach(([k, j]) => {
       const a = document.createElement("a");
       a.className = "other-card";
-      a.href = `Job Posting.html?id=${k}`;
+      a.href = `/careers/${k}`;
       a.innerHTML = `
         <div class="code">${j.code}</div>
         <h4>${j.title}</h4>
