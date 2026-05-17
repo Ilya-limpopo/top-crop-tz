@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>News — Top Crop Tanzania</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/mobile-styles.css" />
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --bg-warm: #F4F2EC;
+    --ink: #161614;
+    --ink-2: #3A3A36;
+    --ink-3: #6A6A64;
+    --line: #E4E1D7;
+    --leaf: oklch(0.46 0.07 145);
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { background: var(--bg); }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+  }
+  ::selection { background: var(--ink); color: var(--bg); }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .serif { font-family: var(--serif); font-weight: 400; }
+  .mono  { font-family: var(--mono); }
+
+  /* Top nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 48px;
+    backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-wordmark { font-family: var(--serif); font-style: italic; font-size: 22px; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono); font-size: 12px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-3); position: relative; padding: 6px 0;
+    transition: color .25s ease;
+  }
+  .nav-link__line {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 1px; background: var(--ink);
+    transform: scaleX(0); transform-origin: left center;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .nav-link:hover { color: var(--ink); }
+  .nav-link:hover .nav-link__line { transform: scaleX(1); }
+  .nav-cta {
+    margin-left: 24px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+
+  /* Article */
+  main { padding: 140px 48px 0; }
+  .article { max-width: 880px; margin: 0 auto; }
+
+  .article-meta {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 20px;
+  }
+  .article-meta .tag { color: var(--leaf); }
+  .article-meta .sep { margin: 0 12px; opacity: .5; }
+
+  .article-title {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(36px, 4.8vw, 72px);
+    line-height: 1.05; letter-spacing: -0.01em;
+    margin: 0 0 22px;
+    text-wrap: balance;
+  }
+  .article-subtitle {
+    font-family: var(--serif); font-style: normal; font-weight: 400;
+    font-size: clamp(20px, 1.7vw, 26px);
+    line-height: 1.45; color: var(--ink-2);
+    margin: 0 0 48px;
+    text-wrap: pretty;
+  }
+
+  .hero {
+    aspect-ratio: 16 / 9;
+    background: var(--bg-warm) center/cover no-repeat;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    margin-bottom: 56px;
+  }
+
+  .article-body {
+    font-size: 18px; line-height: 1.7; color: var(--ink-2);
+    padding-bottom: 96px;
+  }
+  .article-body p { margin: 0 0 1.4em; }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  /* Continue reading */
+  .more {
+    border-top: 1px solid var(--line);
+    padding: 80px 48px 120px;
+  }
+  .more-inner { max-width: 1280px; margin: 0 auto; }
+  .more-head h3 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 36px; margin: 0 0 36px;
+  }
+  .more-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px;
+  }
+  .more-card { display: block; color: var(--ink); }
+  .more-card .img {
+    aspect-ratio: 4/3;
+    background: var(--bg-warm) center/cover no-repeat;
+    border: 1px solid var(--line);
+    margin-bottom: 18px;
+    transition: transform .6s ease;
+  }
+  .more-card:hover .img { transform: scale(1.005); }
+  .more-card .meta {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .more-card .tag { color: var(--leaf); }
+  .more-card .date { color: var(--ink-3); }
+  .more-card h4 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 22px; line-height: 1.2; margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* Footer */
+  footer {
+    background: #11110F; color: #F2EFE3;
+    padding: 80px 48px 36px;
+  }
+  footer .inner { max-width: 1280px; margin: 0 auto; }
+  footer .row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    border-bottom: 1px solid #2A2A26;
+    padding-bottom: 56px;
+  }
+  footer h5 {
+    font-family: var(--mono); font-weight: 500;
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    color: #6A6A64; margin: 0 0 14px;
+  }
+  footer .word { font-family: var(--serif); font-style: italic; font-size: 36px; }
+  footer a { color: #C9C5B6; padding: 4px 0; display: block; }
+  footer a:hover { color: #F2EFE3; }
+  footer .legal {
+    display: flex; justify-content: space-between;
+    padding-top: 28px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: #6A6A64;
+  }
+
+  @media (max-width: 960px) {
+    main { padding: 120px 24px 0; }
+    .more { padding: 56px 24px 80px; }
+    .more-grid { grid-template-columns: 1fr; }
+    .nav { padding: 18px 24px; }
+    .nav-links, .nav-cta { display: none; }
+    footer { padding: 56px 24px 24px; }
+    footer .row { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="Top Crop.html" class="nav-wordmark">Top Crop<sup style="font-family: var(--mono); font-size: 9px; letter-spacing: .2em; margin-left: 6px; vertical-align: super;">TZ</sup></a>
+  <div style="display:flex;align-items:center;">
+    <div class="nav-links">
+      <a class="nav-link" href="Top Crop.html#about">About<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="Top Crop.html#team">Team<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="Top Crop.html#careers">Careers<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="Top Crop.html#news">News<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="Top Crop.html#contact">Contact<span class="nav-link__line"></span></a>
+    </div>
+    <a class="nav-cta" href="Top Crop.html#contact">Get in touch →</a>
+  </div>
+</nav>
+
+<main>
+  <article class="article">
+    <div class="hero" id="art-hero"></div>
+    <div class="article-meta">
+      <span class="tag" id="art-tag">—</span>
+      <span class="sep">·</span>
+      <span id="art-date">—</span>
+    </div>
+    <h1 class="article-title" id="art-title">—</h1>
+    <p class="article-subtitle" id="art-subtitle">—</p>
+    <div class="article-body" id="art-body">—</div>
+  </article>
+</main>
+
+<section class="more">
+  <div class="more-inner">
+    <div class="more-head">
+      <h3>Other news</h3>
+    </div>
+    <div class="more-grid" id="more-grid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <div class="row">
+      <div>
+        <div class="word">Top Crop<sup style="font-family: var(--mono); font-size: 10px; letter-spacing: .2em; margin-left: 6px;">TZ</sup></div>
+        <p style="margin: 18px 0 0; max-width: 38ch; color: #C9C5B6; line-height: 1.55;">
+          Premium fruit, grown on 6,600 hectares in Rufiji, Tanzania.
+          A flagship investment of D43, Dubai.
+        </p>
+      </div>
+      <div>
+        <h5>Site</h5>
+        <a href="Top Crop.html#about">About</a>
+        <a href="Top Crop.html#team">Team</a>
+        <a href="Top Crop.html#careers">Careers</a>
+        <a href="Top Crop.html#news">News</a>
+        <a href="Top Crop.html#contact">Contact</a>
+      </div>
+      <div>
+        <h5>Reach us</h5>
+        <a href="mailto:press@topcrop.tz">press@topcrop.tz</a>
+        <a href="mailto:hello@topcrop.tz">hello@topcrop.tz</a>
+      </div>
+      <div>
+        <h5>Operations</h5>
+        <p style="color:#C9C5B6;line-height:1.55;margin:0;">Rufiji District<br/>Pwani Region, Tanzania</p>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Top Crop Tanzania Ltd.</span>
+      <span>A D43 Group Company</span>
+    </div>
+  </div>
+</footer>
+
+<script src="news-data.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const slug = params.get("id") || "grand-opening";
+  const stories = window.NEWS_STORIES || {};
+  const story = stories[slug] || stories["grand-opening"];
+
+  document.title = `${story.title} — Top Crop Tanzania`;
+  document.getElementById("art-tag").textContent = story.tag;
+  document.getElementById("art-date").textContent = story.date;
+  document.getElementById("art-title").textContent = story.title;
+  document.getElementById("art-subtitle").textContent = story.subtitle;
+  document.getElementById("art-hero").style.backgroundImage =
+    `url("${encodeURI(story.photo)}")`;
+
+  // Body: render plain paragraphs from a single text field
+  const body = document.getElementById("art-body");
+  body.innerHTML = "";
+  String(story.body || "")
+    .split(/\n\s*\n/)              // blank line -> new paragraph
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .forEach((para) => {
+      const p = document.createElement("p");
+      p.textContent = para;
+      body.appendChild(p);
+    });
+
+  // Other news: 3 latest others
+  const grid = document.getElementById("more-grid");
+  const others = Object.entries(stories)
+    .filter(([k]) => k !== slug)
+    .slice(0, 3);
+  others.forEach(([k, s]) => {
+    const a = document.createElement("a");
+    a.className = "more-card";
+    a.href = `News Article.html?id=${k}`;
+    a.innerHTML = `
+      <div class="img" style="background-image:url('${encodeURI(s.photo)}')"></div>
+      <div class="meta"><span class="tag">${s.tag}</span><span class="date">${s.date}</span></div>
+      <h4>${s.title}</h4>
+    `;
+    grid.appendChild(a);
+  });
+</script>
+</body>
+</html>

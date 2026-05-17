@@ -1,0 +1,400 @@
+/* ============================================================
+   Top Crop Tanzania — responsive layer.
+   Loaded on every HTML page via a server-injected <link> tag.
+   Uses !important freely because the prototype's React sections
+   and a few inline styles in static HTML can't otherwise be
+   overridden without rewriting the markup.
+   Breakpoints:
+     1024px = tablet landscape / small laptop
+      768px = tablet portrait / large phone
+      480px = phone
+   ============================================================ */
+
+/* ===========================================================
+   PUBLIC SITE — Home (Top Crop.html + src/sections.jsx)
+   =========================================================== */
+
+@media (max-width: 1024px) {
+  /* Section shell wraps every section in sections.jsx with
+     padding: "120px 56px"; tighten on tablets. */
+  section[data-screen-label] {
+    padding: 96px 32px !important;
+  }
+  /* Top-bar links shrink. */
+  nav.tc-nav .tc-nav-links { gap: 18px !important; }
+}
+
+@media (max-width: 768px) {
+  /* === Top nav === */
+  nav.tc-nav {
+    height: auto !important;
+    padding: 10px 16px !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  nav.tc-nav .tc-nav-links {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+  }
+  nav.tc-nav .tc-nav-cta {
+    margin-left: 0 !important;
+    padding: 8px 12px !important;
+  }
+  nav.tc-nav .nav-link { font-size: 11px !important; letter-spacing: .12em !important; padding: 4px 0 !important; }
+
+  /* === Section shell + headers === */
+  section[data-screen-label] {
+    padding: 72px 20px !important;
+  }
+  section[data-screen-label] > header {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    padding-bottom: 28px !important;
+    margin-bottom: 36px !important;
+  }
+  section[data-screen-label] > header h2 {
+    font-size: clamp(32px, 8vw, 44px) !important;
+  }
+  /* The big italic numeral in section header — shrink. */
+  section[data-screen-label] > header > div:first-child > div:nth-child(2) {
+    font-size: 40px !important;
+    margin-top: 8px !important;
+  }
+
+  /* === About === */
+  /* photo grid: collapse 12-col to 1 */
+  section#about [data-tc="about-photos"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  section#about [data-tc="about-photos"] > .ph {
+    grid-column: 1 / -1 !important;
+    aspect-ratio: 4 / 3 !important;
+    height: auto !important;
+  }
+  /* body + facts side-by-side → stacked */
+  section#about [data-tc="about-bottom"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  section#about [data-tc="about-bottom"] dl {
+    gap: 18px 16px !important;
+  }
+  section#about [data-tc="about-bottom"] dt {
+    font-size: 36px !important;
+  }
+
+  /* === Team === */
+  section#team [data-tc="team-grid"] {
+    grid-template-columns: 1fr 1fr !important;
+    grid-auto-rows: minmax(220px, auto) !important;
+    gap: 18px !important;
+  }
+  /* featured tile spans the full row on mobile */
+  section#team [data-tc="team-grid"] > article[data-tc-featured="true"] {
+    grid-column: span 2 !important;
+    grid-row: span 1 !important;
+  }
+  section#team [data-tc="team-grid"] > article h3 {
+    font-size: 18px !important;
+  }
+
+  /* === Careers === */
+  section#careers [data-tc="benefits-grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    margin-bottom: 48px !important;
+  }
+  /* Vacancy rows: 5-col grid → stacked */
+  section#careers [data-tc="vacancy-row"] {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 20px 4px !important;
+  }
+  section#careers [data-tc="vacancy-row"] h3 {
+    font-size: 22px !important;
+  }
+  section#careers [data-tc="vacancy-row"] > span:last-child { display: none !important; }
+
+  /* === News === */
+  section#news [data-tc="news-grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+  section#news [data-tc="news-grid"] > a {
+    grid-column: span 1 !important;
+  }
+  section#news h3 { font-size: 22px !important; }
+
+  /* === Contact === */
+  section#contact > div {
+    padding: 0 20px !important;
+  }
+  section#contact > div > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding-bottom: 28px !important;
+    margin-bottom: 36px !important;
+  }
+  section#contact [data-tc="contact-body"] {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  section#contact form [data-tc="contact-form-row"] {
+    grid-template-columns: 1fr !important;
+  }
+  section#contact form > div:last-child {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+  }
+  section#contact form button[type="submit"] {
+    width: 100% !important;
+  }
+
+  /* === Footer === */
+  footer[data-tc="footer"] {
+    padding: 40px 20px 28px !important;
+    align-items: flex-start !important;
+  }
+  footer[data-tc="footer"] > div:first-child { font-size: 64px !important; }
+  footer[data-tc="footer"] > div:nth-child(2) { gap: 32px !important; }
+
+  /* === Intro animation === */
+  section#intro [data-tc="fact-panel"] {
+    width: calc(100vw - 24px) !important;
+    padding: 20px 18px 24px !important;
+    bottom: 8% !important;
+  }
+  section#intro [data-tc="fact-panel"] h2 {
+    font-size: clamp(28px, 8vw, 40px) !important;
+    margin-bottom: 12px !important;
+  }
+  section#intro [data-tc="fact-panel"] p {
+    font-size: 14px !important;
+  }
+  /* Step dots — keep but smaller and closer to edge */
+  section#intro [data-tc="step-dots"] {
+    right: 14px !important;
+  }
+  /* Hide the side vertical-grid backdrop on small screens, it crowds */
+  section#intro > div[aria-hidden] { opacity: 0.3 !important; }
+}
+
+@media (max-width: 480px) {
+  section[data-screen-label] {
+    padding: 56px 16px !important;
+  }
+  section#team [data-tc="team-grid"] {
+    grid-template-columns: 1fr !important;
+  }
+  section#team [data-tc="team-grid"] > article[data-tc-featured="true"] {
+    grid-column: span 1 !important;
+  }
+  section#about [data-tc="about-bottom"] dl {
+    grid-template-columns: 1fr !important;
+  }
+  footer[data-tc="footer"] > div:first-child { font-size: 48px !important; }
+}
+
+/* ===========================================================
+   ALL NEWS  /  NEWS ARTICLE  /  ALL OPENINGS  /  JOB POSTING
+   These are static HTML; their existing CSS uses
+   .tc-* helper classes plus a few literal grids.
+   =========================================================== */
+
+@media (max-width: 768px) {
+  /* Generic page chrome shared by all four static templates */
+  header.site-bar,
+  .site-bar,
+  .site-header {
+    padding: 14px 20px !important;
+  }
+  main, .main, .article, .more, .openings {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  /* News & openings grids — typical "grid-template-columns: repeat(3, 1fr)" */
+  .more-grid, .news-grid, .openings-grid, .row-list {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  /* Hero blocks shouldn't blow up vertically on phones */
+  .hero, .article-hero, .opening-hero {
+    aspect-ratio: 4/3 !important;
+  }
+  /* Footer rows commonly use grid-template-columns: 2fr 1fr 1fr 1fr */
+  footer .row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+  }
+  /* Page titles get oversized on phones */
+  .article-title, .opening-title, .page-h1 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+    line-height: 1.05 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  footer .row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===========================================================
+   ADMIN — every Admin *.html page
+   Most pages already have @media (max-width: 960px). Layer on
+   refinements for very small screens and fix specific spots.
+   =========================================================== */
+
+@media (max-width: 768px) {
+  .topbar { padding: 12px 16px !important; flex-wrap: wrap !important; gap: 10px !important; }
+  .topbar .topbar-right {
+    gap: 14px !important;
+    flex-wrap: wrap !important;
+  }
+  .topbar .user { gap: 10px !important; }
+  .topbar .user .logout {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+  main { padding: 32px 16px 0 !important; }
+  .crumbs { margin-bottom: 18px !important; }
+  .page-head {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 18px !important;
+    padding-bottom: 24px !important;
+    margin-bottom: 36px !important;
+  }
+  .page-title { font-size: clamp(36px, 9vw, 56px) !important; }
+  .page-actions { flex-wrap: wrap !important; gap: 8px !important; }
+  .btn { padding: 12px 16px !important; font-size: 10px !important; letter-spacing: .14em !important; }
+
+  /* Form/field blocks */
+  .field-block {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    padding: 32px 0 !important;
+  }
+  .field-label { max-width: none !important; }
+  .field-label h2 { font-size: 24px !important; }
+  .meta-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Save bar — stack and fix to bottom */
+  .save-bar { padding: 12px 16px !important; }
+  .save-bar-inner {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .save-bar .actions {
+    justify-content: stretch !important;
+    gap: 8px !important;
+  }
+  .save-bar .actions .btn { flex: 1 !important; }
+  body { padding-bottom: 200px !important; }
+
+  /* Admin Home — section list rows */
+  .editable .row {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    padding: 18px 8px !important;
+  }
+  .editable .row .arrow,
+  .editable .row .last-edit { display: none !important; }
+
+  /* Admin Home — quick actions */
+  .quick-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .quick-card {
+    grid-template-columns: 40px 1fr !important;
+    padding: 20px !important;
+  }
+  .quick-card .arrow { display: none !important; }
+  .hero {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding-bottom: 28px !important;
+    margin-bottom: 40px !important;
+  }
+  .summary { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+  .recent li {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+    padding: 14px 4px !important;
+  }
+  .legal {
+    padding: 14px 16px !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+
+  /* About: photo grid */
+  .photo-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+  }
+  .photo-grid .slot {
+    height: auto !important;
+    aspect-ratio: 4/3 !important;
+    grid-column: span 4 !important;
+  }
+  .facts-grid { grid-template-columns: 1fr !important; }
+
+  /* Team grid */
+  .team-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+  /* Careers benefits */
+  .benefits-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+  /* Contact offices/socials */
+  .offices { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .social-row { grid-template-columns: 1fr !important; gap: 10px !important; }
+
+  /* Callouts in admin (Add news / Add opening etc.) */
+  .callout { grid-template-columns: 40px 1fr !important; padding: 18px !important; }
+  .callout .arrow { display: none !important; }
+
+  /* Item rows (job edit responsibilities / requirements / offer) */
+  .item-row { grid-template-columns: 24px 1fr auto !important; gap: 10px !important; }
+
+  /* Video uploader card */
+  .video-meta { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
+  .video-meta .controls { flex-wrap: wrap !important; }
+
+  /* Phrase cards on Intro editor */
+  .phrase { padding: 18px !important; gap: 16px !important; }
+
+  /* Danger zone in news/job editors */
+  .danger-zone {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar { padding: 10px 12px !important; }
+  .topbar .wordmark { font-size: 18px !important; }
+  .topbar .badge { font-size: 10px !important; }
+  main { padding: 24px 12px 0 !important; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .photo-grid .slot { grid-column: span 2 !important; }
+  .summary { grid-template-columns: 1fr !important; }
+  .save-bar .actions { flex-direction: column !important; }
+}
+
+/* ===========================================================
+   ADMIN LOGIN — narrow form, already has @media (720px)
+   =========================================================== */
+@media (max-width: 480px) {
+  .stage { padding: 80px 16px 96px !important; }
+  .title { font-size: 36px !important; }
+  .submit { padding: 16px 20px !important; }
+  .legal { padding: 12px 16px !important; }
+}

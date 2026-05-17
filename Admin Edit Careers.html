@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Edit Careers — Admin — Top Crop Tanzania</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/mobile-styles.css" />
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --bg-warm: #F4F2EC;
+    --ink: #161614;
+    --ink-2: #3A3A36;
+    --ink-3: #6A6A64;
+    --line: #E4E1D7;
+    --line-strong: #C9C5B6;
+    --leaf: oklch(0.46 0.07 145);
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); }
+  body {
+    font-family: var(--sans); color: var(--ink);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    font-size: 16px; line-height: 1.55; letter-spacing: -0.005em;
+    padding-bottom: 240px;
+  }
+  ::selection { background: var(--ink); color: var(--bg); }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  input, textarea { font: inherit; color: inherit; }
+
+  .serif { font-family: var(--serif); font-weight: 400; }
+  .mono  { font-family: var(--mono); }
+
+  /* Top bar */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 48px;
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(10px);
+  }
+  .wordmark { font-family: var(--serif); font-style: italic; font-size: 22px; }
+  .wordmark sup {
+    font-family: var(--mono); font-size: 9px; letter-spacing: .2em;
+    margin-left: 6px; vertical-align: super;
+  }
+  .topbar-right { display: flex; align-items: center; gap: 28px; }
+  .badge {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .badge.dot::before {
+    content: ""; display: inline-block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--leaf); margin-right: 8px;
+    vertical-align: middle;
+  }
+  .user {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--ink); color: var(--bg);
+    display: grid; place-items: center;
+    font-family: var(--serif); font-style: italic; font-size: 14px;
+  }
+  .logout {
+    color: var(--ink-3); border-left: 1px solid var(--line-strong);
+    padding-left: 14px; transition: color .2s ease;
+  }
+  .logout:hover { color: var(--ink); }
+
+  /* Page shell */
+  main { padding: 56px 48px 0; max-width: 1280px; margin: 0 auto; }
+  .crumbs {
+    display: flex; gap: 12px; align-items: center;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 28px;
+  }
+  .crumbs a:hover { color: var(--ink); }
+  .crumbs .sep { opacity: .5; }
+
+  .page-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 32px; padding-bottom: 36px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 64px;
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+  .page-title {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1; letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .page-actions { display: flex; gap: 12px; align-items: center; }
+  .btn {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: 14px 22px;
+    border: 1px solid var(--ink);
+    background: transparent; color: var(--ink);
+    transition: background .25s ease, color .25s ease;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn:hover { background: var(--ink); color: var(--bg); }
+  .btn.primary { background: var(--ink); color: var(--bg); }
+  .btn.primary:hover { background: transparent; color: var(--ink); }
+  .btn.ghost { border-color: var(--line-strong); color: var(--ink-3); }
+  .btn.ghost:hover { border-color: var(--ink); background: transparent; color: var(--ink); }
+
+  /* Sections — heading on top, content full width below */
+  .field-block {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .field-block:last-of-type { border-bottom: none; }
+  .field-label {
+    margin-bottom: 36px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .field-label-text { max-width: 60ch; }
+  .field-label h2 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 36px; line-height: 1.1; margin: 0 0 8px;
+  }
+  .field-label .hint {
+    font-size: 14px; line-height: 1.55; color: var(--ink-3);
+    margin: 0;
+  }
+
+  /* Inputs */
+  .input-row { display: grid; gap: 6px; }
+  .input-row + .input-row { margin-top: 24px; }
+  .input-row label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .input-row input,
+  .input-row textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--line-strong);
+    background: transparent;
+    font-family: var(--sans); font-size: 18px; color: var(--ink);
+    padding: 10px 0; outline: none;
+    transition: border-color .25s ease;
+    resize: vertical;
+  }
+  .input-row textarea {
+    min-height: 110px; line-height: 1.55;
+  }
+  .input-row input:focus,
+  .input-row textarea:focus { border-bottom-color: var(--ink); }
+  .input-row input::placeholder,
+  .input-row textarea::placeholder { color: var(--ink-3); }
+  .input-row.serif-input input,
+  .input-row.serif-input textarea {
+    font-family: var(--serif); font-style: italic; font-size: 28px;
+    line-height: 1.15;
+  }
+
+  /* Benefits grid */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .benefit {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+  .benefit-head {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 6px;
+  }
+  .benefit-head .num {
+    font-family: var(--serif); font-style: italic; font-size: 28px;
+    line-height: 1; color: var(--ink);
+  }
+
+  /* Manage opening callout */
+  .callout {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 28px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .callout .plus {
+    width: 56px; height: 56px;
+    border: 1px solid var(--ink);
+    display: grid; place-items: center;
+    font-family: var(--serif); font-style: italic; font-size: 36px;
+    line-height: 1;
+  }
+  .callout h3 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 26px; line-height: 1.1; margin: 0 0 4px;
+  }
+  .callout p { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .callout .arrow {
+    font-size: 22px; transition: transform .25s ease;
+  }
+  .callout:hover { background: var(--bg-warm); border-color: var(--ink); }
+  .callout:hover .arrow { transform: translateX(4px); }
+
+  /* Save bar — pinned to viewport bottom */
+  .save-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 15;
+    padding: 16px 48px;
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--line);
+  }
+  .save-bar-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+  }
+  .save-bar .status {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .save-bar .actions { display: flex; gap: 12px; }
+
+  @media (max-width: 960px) {
+    .topbar { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    main { padding: 40px 20px 0; }
+    .page-head { flex-direction: column; align-items: stretch; }
+    .field-block { padding: 40px 0; }
+    .field-label { flex-direction: column; align-items: stretch; }
+    .field-label h2 { font-size: 28px; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .callout { grid-template-columns: 48px 1fr; }
+    .callout .arrow { display: none; }
+    .save-bar { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 20px; }
+    .save-bar .actions { justify-content: flex-end; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="wordmark" href="/">Top Crop<sup>TZ</sup></a>
+  <div class="topbar-right">
+    <span class="badge dot">Admin Console</span>
+    <div class="user">
+      <div class="avatar">R</div>
+      <span>Ramil M.</span>
+      <a class="logout" href="Admin Login.html">Log out</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="crumbs">
+    <a href="/admin">Admin</a>
+    <span class="sep">/</span>
+    <span>Careers</span>
+  </div>
+
+  <header class="page-head">
+    <div>
+      <div class="eyebrow">Section 04 / Editing</div>
+      <h1 class="page-title">Edit Careers</h1>
+    </div>
+    <div class="page-actions">
+      <a class="btn ghost" href="/#careers" target="_blank">Preview ↗</a>
+      <a class="btn" href="/admin">Discard</a>
+    </div>
+  </header>
+
+  <form id="careersForm" novalidate>
+
+    <!-- HEADING -->
+    <section class="field-block">
+      <div class="field-label">
+        <div class="field-label-text">
+          <h2>Heading</h2>
+          <p class="hint">
+            Eyebrow above the title and the title itself. Wrap a word in
+            asterisks to italicise it, e.g. <code>*with us*</code>.
+          </p>
+        </div>
+      </div>
+      <div class="input-row">
+        <label for="eyebrow">Eyebrow (label above title)</label>
+        <input id="eyebrow" type="text" placeholder="e.g. Careers — Open Roles"
+               value="Careers — Open Roles"/>
+      </div>
+      <div class="input-row serif-input">
+        <label for="title">Title</label>
+        <input id="title" type="text" placeholder="Section title"
+               value="Build your future *with us.*"/>
+      </div>
+    </section>
+
+    <!-- DESCRIPTION -->
+    <section class="field-block">
+      <div class="field-label">
+        <div class="field-label-text">
+          <h2>Description</h2>
+          <p class="hint">
+            The paragraph under the title that frames the careers section.
+          </p>
+        </div>
+      </div>
+      <div class="input-row">
+        <label for="description">Description text</label>
+        <textarea id="description" placeholder="Section description…">At Top Crop, we believe a company is only as strong as its people. We are constantly seeking educated, ambitious professionals who are ready to make a mark in the agrotech industry. We offer more than a job — we offer a career path in one of Africa's fastest-growing agricultural projects.</textarea>
+      </div>
+    </section>
+
+    <!-- FOUR BENEFITS -->
+    <section class="field-block">
+      <div class="field-label">
+        <div class="field-label-text">
+          <h2>Four benefits</h2>
+          <p class="hint">
+            Short title plus a one-or-two-sentence description. Shown as the
+            row of four cards above the openings list.
+          </p>
+        </div>
+      </div>
+      <div class="benefits-grid" id="benefitsGrid">
+        <!-- benefits injected by JS -->
+      </div>
+    </section>
+
+    <!-- ADD OPENING -->
+    <section class="field-block">
+      <div class="field-label">
+        <div class="field-label-text">
+          <h2>Open positions</h2>
+          <p class="hint">
+            Each opening lives on its own page. Add a new one or edit
+            existing ones from the openings list.
+          </p>
+        </div>
+        <a class="btn ghost" href="/careers" target="_blank">View all openings ↗</a>
+      </div>
+      <a class="callout" href="/admin/openings/new">
+        <span class="plus">+</span>
+        <div>
+          <h3>Add opening</h3>
+          <p>Create a new job posting with title, summary, requirements and benefits.</p>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+      <div id="openingsList" style="margin-top: 24px; display: grid; gap: 8px;"></div>
+    </section>
+  </form>
+
+  <div class="save-bar">
+    <div class="save-bar-inner">
+      <span class="status" id="status">No unsaved changes</span>
+      <div class="actions">
+        <button type="button" class="btn ghost" id="resetBtn">Reset</button>
+        <button type="button" class="btn primary" id="saveBtn">Save changes</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // ─── Initial data from server (window.__ADMIN__.data) ────────────────
+  const __DATA__ = (window.__ADMIN__ && window.__ADMIN__.data) || {};
+  if (__DATA__.eyebrow     != null) document.getElementById("eyebrow").value     = __DATA__.eyebrow;
+  if (__DATA__.title       != null) document.getElementById("title").value       = __DATA__.title;
+  if (__DATA__.description != null) document.getElementById("description").value = __DATA__.description;
+
+  const BENEFITS = (Array.isArray(__DATA__.benefits) && __DATA__.benefits.length === 4)
+    ? __DATA__.benefits
+    : [{ title: "", body: "" }, { title: "", body: "" }, { title: "", body: "" }, { title: "", body: "" }];
+
+  // Existing openings — quick navigation to edit each one.
+  const openings = Array.isArray(__DATA__.openings) ? __DATA__.openings : [];
+  const openingsList = document.getElementById("openingsList");
+  if (openings.length) {
+    openings.forEach((o) => {
+      const a = document.createElement("a");
+      a.className = "callout";
+      a.href = "/admin/openings/" + encodeURIComponent(o.slug);
+      a.style.padding = "16px 20px";
+      a.innerHTML = `
+        <span class="plus" style="font-size:14px; width:auto; padding:6px 10px; border:1px solid var(--ink); font-family:var(--mono); font-style:normal; letter-spacing:.1em;">${escapeAttrCo(o.code || '')}</span>
+        <div>
+          <h3 style="font-size:18px; margin:0 0 2px;">${escapeAttrCo(o.title)}</h3>
+          <p>${escapeAttrCo(o.location || '')} · ${escapeAttrCo(o.type || '')}</p>
+        </div>
+        <span class="arrow">→</span>
+      `;
+      openingsList.appendChild(a);
+    });
+  }
+  function escapeAttrCo(s) { return String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+  const grid = document.getElementById("benefitsGrid");
+  BENEFITS.forEach((b, i) => {
+    const card = document.createElement("div");
+    card.className = "benefit";
+    card.innerHTML = `
+      <div class="benefit-head">
+        <span class="num">0${i + 1}</span>
+        <span>Benefit ${i + 1} of 4</span>
+      </div>
+      <div class="input-row serif-input">
+        <label for="b${i}-title">Title</label>
+        <input id="b${i}-title" type="text" value="${escapeAttr(b.title)}" placeholder="Short benefit name"/>
+      </div>
+      <div class="input-row">
+        <label for="b${i}-body">Description</label>
+        <textarea id="b${i}-body" placeholder="One or two sentences.">${escapeText(b.body)}</textarea>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // ─── Dirty / save bar ───────────────────────────────────────────────
+  const status = document.getElementById("status");
+  const saveBtn = document.getElementById("saveBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  let dirty = false;
+  function markDirty() {
+    if (dirty) return;
+    dirty = true;
+    status.textContent = "Unsaved changes";
+  }
+  document.getElementById("careersForm").addEventListener("input", markDirty);
+  function collect() {
+    const benefits = [0, 1, 2, 3].map((i) => ({
+      title: document.getElementById(`b${i}-title`).value,
+      body:  document.getElementById(`b${i}-body`).value,
+    }));
+    return {
+      eyebrow:     document.getElementById("eyebrow").value,
+      title:       document.getElementById("title").value,
+      description: document.getElementById("description").value,
+      benefits,
+    };
+  }
+  saveBtn.addEventListener("click", async () => {
+    if (!dirty) return;
+    await window.TopCropAdmin.runSave({
+      url: "/api/admin/careers",
+      method: "PUT",
+      getPayload: collect,
+      btn: saveBtn,
+      statusEl: status,
+      onSaved: () => { dirty = false; },
+    });
+  });
+  resetBtn.addEventListener("click", () => {
+    if (!dirty) return;
+    if (confirm("Discard all unsaved changes?")) location.reload();
+  });
+
+  function escapeAttr(s) {
+    return String(s ?? "").replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[c]));
+  }
+  function escapeText(s) {
+    return String(s ?? "").replace(/[&<>]/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;"
+    }[c]));
+  }
+</script>
+</body>
+</html>

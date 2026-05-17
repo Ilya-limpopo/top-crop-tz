@@ -1,0 +1,35 @@
+{
+  "name": "topcrop-tz",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Top Crop Tanzania — corporate site + admin console (Express + Prisma + SQLite)",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon --watch server --ext js,mjs server/index.js",
+    "start": "prisma migrate deploy && node server/index.js",
+    "postinstall": "prisma generate",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "db:reset": "prisma migrate reset --force",
+    "db:seed": "node prisma/seed.js",
+    "admin:hash": "node scripts/hash-password.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "argon2": "^0.44.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "multer": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "prisma": "^5.22.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

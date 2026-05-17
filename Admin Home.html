@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin Home — Top Crop Tanzania</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/mobile-styles.css" />
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --bg-warm: #F4F2EC;
+    --ink: #161614;
+    --ink-2: #3A3A36;
+    --ink-3: #6A6A64;
+    --line: #E4E1D7;
+    --line-strong: #C9C5B6;
+    --leaf: oklch(0.46 0.07 145);
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); }
+  body {
+    font-family: var(--sans); color: var(--ink);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    font-size: 16px; line-height: 1.55; letter-spacing: -0.005em;
+  }
+  ::selection { background: var(--ink); color: var(--bg); }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+
+  .serif { font-family: var(--serif); font-weight: 400; }
+  .mono  { font-family: var(--mono); }
+
+  /* Top bar */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 48px;
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(10px);
+  }
+  .wordmark { font-family: var(--serif); font-style: italic; font-size: 22px; }
+  .wordmark sup {
+    font-family: var(--mono); font-size: 9px; letter-spacing: .2em;
+    margin-left: 6px; vertical-align: super;
+  }
+  .topbar-right { display: flex; align-items: center; gap: 28px; }
+  .badge {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .badge.dot::before {
+    content: ""; display: inline-block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--leaf); margin-right: 8px;
+    vertical-align: middle;
+  }
+  .view-site {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink);
+    border-bottom: 1px solid var(--ink); padding-bottom: 2px;
+  }
+  .user {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--ink); color: var(--bg);
+    display: grid; place-items: center;
+    font-family: var(--serif); font-style: italic; font-size: 14px;
+  }
+  .user .name { color: var(--ink); }
+  .user .logout {
+    color: var(--ink-3); border-left: 1px solid var(--line-strong);
+    padding-left: 14px; transition: color .2s ease;
+  }
+  .user .logout:hover { color: var(--ink); }
+
+  /* Hero */
+  main { padding: 80px 48px 0; max-width: 1280px; margin: 0 auto; }
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 64px;
+    align-items: end;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 80px;
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 18px;
+  }
+  .title {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1; letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .summary {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  .summary .stat {
+    border-top: 1px solid var(--line-strong); padding-top: 14px;
+  }
+  .summary .stat .v {
+    font-family: var(--serif); font-style: italic; font-size: 44px;
+    line-height: 1; letter-spacing: -0.01em;
+  }
+  .summary .stat .l {
+    margin-top: 8px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+
+  /* Section list */
+  .section-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 18px;
+  }
+  .section-head h2 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 32px; margin: 0;
+  }
+  .section-head .meta {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+
+  .editable {
+    list-style: none; padding: 0; margin: 0;
+  }
+  .editable .row {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 3fr) minmax(0, 4fr) 200px 28px;
+    align-items: center;
+    gap: 28px;
+    padding: 28px 16px;
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+    transition: background .3s ease, box-shadow .3s ease;
+  }
+  .editable .row:last-child { border-bottom: 1px solid var(--line); }
+  .editable .row:hover {
+    background: var(--bg-warm);
+    box-shadow: inset 3px 0 0 var(--leaf);
+  }
+  .editable .num {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    color: var(--ink-3);
+  }
+  .editable h3 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 28px; line-height: 1.1; margin: 0;
+  }
+  .editable p {
+    margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.5;
+  }
+  .editable .last-edit {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .editable .arrow {
+    font-size: 22px; color: var(--ink);
+    transition: transform .3s ease;
+  }
+  .editable .row:hover .arrow { transform: translateX(4px); }
+
+  /* Quick actions */
+  .quick {
+    margin-top: 96px;
+    padding-top: 56px;
+    border-top: 1px solid var(--line);
+  }
+  .quick h2 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 32px; margin: 0 0 32px;
+  }
+  .quick-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .quick-card {
+    display: grid; grid-template-columns: 48px 1fr 32px;
+    align-items: center; gap: 20px;
+    padding: 28px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--ink);
+    transition: background .25s ease, border-color .25s ease;
+  }
+  .quick-card:hover {
+    background: var(--bg-warm);
+    border-color: var(--ink);
+  }
+  .quick-card .plus {
+    width: 48px; height: 48px;
+    border: 1px solid var(--ink);
+    display: grid; place-items: center;
+    font-family: var(--serif); font-size: 28px;
+    line-height: 1;
+  }
+  .quick-card h3 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 22px; line-height: 1.1; margin: 0 0 4px;
+  }
+  .quick-card p {
+    margin: 0; font-size: 13px; color: var(--ink-2); line-height: 1.4;
+  }
+  .quick-card .arrow {
+    font-size: 22px; transition: transform .25s ease;
+  }
+  .quick-card:hover .arrow { transform: translateX(3px); }
+
+  /* Recent activity (light, informational) */
+  .recent {
+    margin: 96px 0 120px;
+  }
+  .recent h2 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 32px; margin: 0 0 24px;
+  }
+  .recent ul { list-style: none; padding: 0; margin: 0; }
+  .recent li {
+    display: grid;
+    grid-template-columns: 140px 1fr 140px;
+    gap: 32px; align-items: baseline;
+    padding: 18px 4px;
+    border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--ink-2);
+  }
+  .recent li:last-child { border-bottom: 1px solid var(--line); }
+  .recent li .when,
+  .recent li .what {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .recent li .who { color: var(--ink); }
+
+  /* Footer marker */
+  .legal {
+    padding: 20px 48px;
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 960px) {
+    .topbar { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    main { padding: 56px 20px 0; }
+    .hero { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; margin-bottom: 56px; }
+    .editable .row { grid-template-columns: 1fr; gap: 8px; padding: 20px 8px; }
+    .editable .row .arrow, .editable .row .last-edit { display: none; }
+    .quick-grid { grid-template-columns: 1fr; }
+    .recent li { grid-template-columns: 1fr; gap: 6px; }
+    .legal { padding: 16px 20px; flex-direction: column; gap: 4px; }
+    .user .logout { padding-left: 0; border: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="wordmark" href="/">Top Crop<sup>TZ</sup></a>
+  <div class="topbar-right">
+    <span class="badge dot">Admin Console</span>
+    <a class="view-site" href="/" target="_blank">View site →</a>
+    <div class="user">
+      <div class="avatar">R</div>
+      <span class="name" id="userName">Admin</span>
+      <a class="logout" href="/admin/login">Log out</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Welcome back · Ramil</div>
+      <h1 class="title">Edit the site,<br/>one section at a time.</h1>
+    </div>
+    <div class="summary">
+      <div class="stat">
+        <div class="v" id="stat-news">—</div>
+        <div class="l">Stories published</div>
+      </div>
+      <div class="stat">
+        <div class="v" id="stat-jobs">—</div>
+        <div class="l">Open positions</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <h2>Site sections</h2>
+    <span class="meta">6 editable sections</span>
+  </div>
+  <ul class="editable" id="editable-list">
+    <!-- rows populated by JS -->
+  </ul>
+
+  <section class="quick">
+    <h2>Quick actions</h2>
+    <div class="quick-grid">
+      <a class="quick-card" href="/admin/news/new">
+        <span class="plus">+</span>
+        <div>
+          <h3>Add news</h3>
+          <p>Publish a new story to News & Media.</p>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="quick-card" href="/admin/openings/new">
+        <span class="plus">+</span>
+        <div>
+          <h3>Add opening</h3>
+          <p>Post a new open position to Careers.</p>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="recent">
+    <h2>Recent activity</h2>
+    <ul>
+      <li>
+        <span class="when">2 hours ago</span>
+        <span><span class="who">Ramil M.</span> updated <em>Our Team</em></span>
+        <span class="what">Edit</span>
+      </li>
+      <li>
+        <span class="when">Yesterday</span>
+        <span><span class="who">Neema K.</span> published <em>“Empowering Rufiji…”</em></span>
+        <span class="what">News</span>
+      </li>
+      <li>
+        <span class="when">3 days ago</span>
+        <span><span class="who">Eliya J.</span> created <em>“International Trade Lead”</em></span>
+        <span class="what">Opening</span>
+      </li>
+      <li>
+        <span class="when">Last week</span>
+        <span><span class="who">Ramil M.</span> replaced intro video</span>
+        <span class="what">Intro</span>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const __ADMIN__ = window.__ADMIN__ || {};
+  const counts = __ADMIN__.counts || { news: 0, jobs: 0 };
+  document.getElementById("stat-news").textContent = String(counts.news).padStart(2, "0");
+  document.getElementById("stat-jobs").textContent = String(counts.jobs).padStart(2, "0");
+  if (__ADMIN__.session?.email) {
+    document.getElementById("userName").textContent = __ADMIN__.session.email;
+  }
+
+  // Section list
+  const SECTIONS = [
+    { id: "intro",    title: "Intro",         hint: "Banana box video and three rotating captions.",       href: "/admin/intro" },
+    { id: "about",    title: "About",         hint: "Section heading, photo grid, body copy, four facts.", href: "/admin/about" },
+    { id: "team",     title: "Our Team",      hint: "Team members, photos, names and titles.",             href: "/admin/team" },
+    { id: "careers",  title: "Careers",       hint: "Heading, description, four benefits, open roles.",    href: "/admin/careers" },
+    { id: "news",     title: "News & Media",  hint: "Heading, description, all published stories.",        href: "/admin/news" },
+    { id: "contact",  title: "Contact",       hint: "Heading, addresses, form submission email.",          href: "/admin/contact" },
+  ];
+
+  const list = document.getElementById("editable-list");
+  SECTIONS.forEach((s, i) => {
+    const a = document.createElement("a");
+    a.className = "row";
+    a.href = s.href;
+    a.innerHTML = `
+      <span class="num">0${i + 1}</span>
+      <h3>${s.title}</h3>
+      <p>${s.hint}</p>
+      <span class="last-edit">${s.id === 'news' ? 'Stories: ' + counts.news : (s.id === 'careers' ? 'Open roles: ' + counts.jobs : '—')}</span>
+      <span class="arrow">→</span>
+    `;
+    list.appendChild(a);
+  });
+</script>
+</body>
+</html>

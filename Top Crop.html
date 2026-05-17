@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Top Crop Tanzania — Premium Bananas, Grown in Rufiji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/mobile-styles.css" />
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --bg-warm: #F4F2EC;
+    --ink: #161614;
+    --ink-2: #3A3A36;
+    --ink-3: #6A6A64;
+    --line: #E4E1D7;
+    --line-strong: #C9C5B6;
+    --leaf: oklch(0.46 0.07 145);
+    --leaf-soft: oklch(0.62 0.08 145);
+    --banana: oklch(0.86 0.14 92);
+    --banana-deep: oklch(0.74 0.14 88);
+    --card: #C9A372;
+    --card-deep: #A07F50;
+    --card-shade: #6E5532;
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { background: var(--bg); }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+  ::selection { background: var(--ink); color: var(--bg); }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .serif { font-family: var(--serif); font-weight: 400; letter-spacing: 0; }
+  .mono  { font-family: var(--mono); }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* Striped image placeholder */
+  .ph {
+    position: relative;
+    background:
+      repeating-linear-gradient(135deg, var(--bg-warm) 0 10px, var(--bg) 10px 20px);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+  /* When a real image is supplied via inline background-image, hide the stripe fallback */
+  .ph[style*="background-image"] {
+    background-color: transparent;
+    background-image: var(--photo, none);
+  }
+  .ph[style*="background-image"]::after { display: none; }
+  .ph::after {
+    content: attr(data-label);
+    position: absolute;
+    inset: auto 0 10px 0;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* hide native scroll while intro is active */
+  body.intro-locked { overflow: hidden; }
+
+  /* Subtle text reveal */
+  .reveal-line {
+    display: inline-block;
+    overflow: hidden;
+  }
+  .reveal-line > span {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform .9s cubic-bezier(.2,.7,.2,1), opacity .9s ease;
+  }
+  .reveal-line.in > span {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Form on dark contact section */
+  #contact input::placeholder,
+  #contact textarea::placeholder { color: #6a6a64; opacity: 1; }
+  #contact input, #contact textarea, #contact select { color: #F2EFE3; }
+  #contact input:focus, #contact textarea:focus, #contact select:focus {
+    border-bottom-color: var(--banana) !important;
+  }
+  #contact input:-webkit-autofill {
+    -webkit-text-fill-color: #F2EFE3;
+    -webkit-box-shadow: 0 0 0 30px var(--ink) inset;
+    transition: background-color 9999s;
+  }
+  #contact select option { color: #161614; background: #F2EFE3; }
+
+  /* Nav link hover underline */
+  .nav-link:hover { color: var(--ink) !important; }
+  .nav-link:hover .nav-link__line { transform: scaleX(1) !important; }
+
+  /* Section in-view */
+  .sec-fade { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+  .sec-fade.in { opacity: 1; transform: translateY(0); }
+</style>
+
+<script type="application/json" id="ext-resource-deps">
+{ "google_fonts": ["Instrument+Serif:ital@0;1"] }
+</script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + Babel -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="src/intro.jsx"></script>
+  <script type="text/babel" src="src/sections.jsx"></script>
+  <script type="text/babel" src="src/app.jsx"></script>
+</body>
+</html>

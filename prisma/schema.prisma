@@ -1,0 +1,120 @@
+// Top Crop Tanzania — Prisma schema
+//
+// Singleton "*Config" tables hold one row each (id = 1). Their fixed-arity
+// arrays (intro captions×3, about photos×5 / facts×4, careers benefits×4,
+// contact offices×3) are stored as JSON strings to honour the "fixed slots"
+// semantics in README §6 and to keep the surface API trivial.
+//
+// Free-form collections (team members, social links, news stories, job
+// openings) get their own normalised tables.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Singleton site-config sections ----------
+
+model IntroConfig {
+  id        Int      @id @default(1)
+  videoUrl  String
+  captions  String   // JSON [{eyebrow,title,body}, x3]
+  updatedAt DateTime @updatedAt
+}
+
+model AboutConfig {
+  id        Int      @id @default(1)
+  eyebrow   String
+  title     String
+  subtitle  String
+  body      String
+  photos    String   // JSON [{url}, x5]
+  facts     String   // JSON [{number,label}, x4]
+  updatedAt DateTime @updatedAt
+}
+
+model TeamConfig {
+  id          Int      @id @default(1)
+  eyebrow     String
+  title       String
+  description String
+  updatedAt   DateTime @updatedAt
+}
+
+model CareersConfig {
+  id          Int      @id @default(1)
+  eyebrow     String
+  title       String
+  description String
+  benefits    String   // JSON [{title,body}, x4]
+  updatedAt   DateTime @updatedAt
+}
+
+model NewsSectionConfig {
+  id          Int      @id @default(1)
+  eyebrow     String
+  title       String
+  description String
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactConfig {
+  id        Int      @id @default(1)
+  eyebrow   String
+  title     String
+  subtitle  String
+  offices   String   // JSON [{label,headline,contact}, x3]
+  updatedAt DateTime @updatedAt
+}
+
+// ---------- Free-form collections ----------
+
+model TeamMember {
+  id        Int     @id @default(autoincrement())
+  name      String
+  role      String
+  photoUrl  String
+  featured  Boolean @default(false)
+  position  Int     @default(0)
+}
+
+model SocialLink {
+  id       Int    @id @default(autoincrement())
+  platform String
+  url      String
+  position Int    @default(0)
+}
+
+model NewsStory {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  tag         String
+  date        String
+  photo       String
+  title       String
+  subtitle    String
+  body        String
+  publishedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model JobOpening {
+  id               Int      @id @default(autoincrement())
+  slug             String   @unique
+  code             String
+  title            String
+  department       String
+  location         String
+  type             String
+  summary          String
+  about            String
+  responsibilities String   // JSON string[]
+  requirements     String   // JSON string[]
+  offer            String   // JSON string[]
+  publishedAt      DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}

@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Careers — Top Crop Tanzania</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/mobile-styles.css" />
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --bg-warm: #F4F2EC;
+    --ink: #161614;
+    --ink-2: #3A3A36;
+    --ink-3: #6A6A64;
+    --line: #E4E1D7;
+    --leaf: oklch(0.46 0.07 145);
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { background: var(--bg); }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px; line-height: 1.55; letter-spacing: -0.005em;
+  }
+  ::selection { background: var(--ink); color: var(--bg); }
+  a { color: inherit; text-decoration: none; }
+
+  .serif { font-family: var(--serif); font-weight: 400; }
+  .mono  { font-family: var(--mono); }
+
+  /* Top nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 48px;
+    backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-wordmark { font-family: var(--serif); font-style: italic; font-size: 22px; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono); font-size: 12px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-3); position: relative; padding: 6px 0;
+    transition: color .25s ease;
+  }
+  .nav-link__line {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 1px; background: var(--ink);
+    transform: scaleX(0); transform-origin: left center;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .nav-link:hover { color: var(--ink); }
+  .nav-link:hover .nav-link__line { transform: scaleX(1); }
+  .nav-cta {
+    margin-left: 24px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--ink); color: var(--ink);
+  }
+
+  main { padding: 140px 48px 0; }
+  .post { max-width: 880px; margin: 0 auto; }
+
+  .post-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--leaf);
+    margin-bottom: 18px;
+  }
+  .post-title {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(36px, 4.6vw, 64px);
+    line-height: 1.05; letter-spacing: -0.01em;
+    margin: 0 0 36px;
+    text-wrap: balance;
+  }
+
+  .post-meta {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 56px;
+  }
+  .post-meta dt {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 6px;
+  }
+  .post-meta dd { margin: 0; font-size: 15px; color: var(--ink); }
+
+  .post-summary {
+    font-family: var(--serif); font-style: normal; font-weight: 400;
+    font-size: clamp(20px, 1.7vw, 26px);
+    line-height: 1.45; color: var(--ink-2);
+    margin: 0 0 56px;
+    text-wrap: pretty;
+  }
+
+  .post-section { margin-bottom: 48px; }
+  .post-section h2 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 28px; line-height: 1.15; color: var(--ink);
+    margin: 0 0 16px;
+  }
+  .post-section p,
+  .post-section li {
+    font-size: 17px; line-height: 1.7; color: var(--ink-2);
+  }
+  .post-section p { margin: 0 0 1em; }
+  .post-section ul {
+    margin: 0; padding: 0; list-style: none;
+  }
+  .post-section li {
+    position: relative; padding: 6px 0 6px 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .post-section li:last-child { border-bottom: none; }
+  .post-section li::before {
+    content: ""; position: absolute; left: 0; top: 18px;
+    width: 10px; height: 1px; background: var(--ink);
+  }
+
+  /* Apply CTA strip */
+  .apply {
+    margin: 56px 0 0;
+    padding: 36px;
+    border: 1px solid var(--line);
+    background: var(--bg-warm);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .apply h3 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 26px; margin: 0 0 6px;
+  }
+  .apply p { margin: 0; color: var(--ink-2); font-size: 15px; }
+  .apply-btn {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: 14px 22px;
+    background: var(--ink); color: var(--bg);
+    border: 1px solid var(--ink);
+    transition: background .25s ease, color .25s ease;
+  }
+  .apply-btn:hover { background: transparent; color: var(--ink); }
+
+  /* Other openings */
+  .more {
+    border-top: 1px solid var(--line);
+    padding: 96px 48px 120px;
+    margin-top: 120px;
+  }
+  .more-inner { max-width: 1280px; margin: 0 auto; }
+  .more h3 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 36px; margin: 0 0 36px;
+  }
+  .other-list {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+  }
+  .other-card {
+    display: block; padding: 24px;
+    border: 1px solid var(--line); background: var(--bg);
+    color: var(--ink);
+    transition: background .25s ease, box-shadow .25s ease, transform .25s ease;
+  }
+  .other-card:hover {
+    background: var(--bg-warm);
+    box-shadow: inset 3px 0 0 var(--leaf);
+  }
+  .other-card .code {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px;
+  }
+  .other-card h4 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 22px; line-height: 1.2; margin: 0 0 12px;
+  }
+  .other-card .loc {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+
+  /* Footer */
+  footer {
+    background: #11110F; color: #F2EFE3;
+    padding: 80px 48px 36px;
+  }
+  footer .inner { max-width: 1280px; margin: 0 auto; }
+  footer .row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    border-bottom: 1px solid #2A2A26;
+    padding-bottom: 56px;
+  }
+  footer h5 {
+    font-family: var(--mono); font-weight: 500;
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    color: #6A6A64; margin: 0 0 14px;
+  }
+  footer .word { font-family: var(--serif); font-style: italic; font-size: 36px; }
+  footer a { color: #C9C5B6; padding: 4px 0; display: block; }
+  footer a:hover { color: #F2EFE3; }
+  footer .legal {
+    display: flex; justify-content: space-between;
+    padding-top: 28px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: #6A6A64;
+  }
+
+  @media (max-width: 960px) {
+    main { padding: 120px 24px 0; }
+    .post-meta { grid-template-columns: 1fr 1fr; }
+    .more { padding: 56px 24px 80px; }
+    .other-list { grid-template-columns: 1fr; }
+    .nav { padding: 18px 24px; }
+    .nav-links, .nav-cta { display: none; }
+    footer { padding: 56px 24px 24px; }
+    footer .row { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="Top Crop.html" class="nav-wordmark">Top Crop<sup style="font-family: var(--mono); font-size: 9px; letter-spacing: .2em; margin-left: 6px; vertical-align: super;">TZ</sup></a>
+  <div style="display:flex;align-items:center;">
+    <div class="nav-links">
+      <a class="nav-link" href="Top Crop.html#about">About<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="Top Crop.html#team">Team<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="Top Crop.html#careers">Careers<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="Top Crop.html#news">News<span class="nav-link__line"></span></a>
+      <a class="nav-link" href="Top Crop.html#contact">Contact<span class="nav-link__line"></span></a>
+    </div>
+    <a class="nav-cta" href="Top Crop.html#contact">Get in touch →</a>
+  </div>
+</nav>
+
+<main>
+  <article class="post">
+    <div class="post-eyebrow" id="job-eyebrow">Open Position</div>
+    <h1 class="post-title" id="job-title">—</h1>
+
+    <dl class="post-meta">
+      <div><dt>Location</dt><dd id="job-location">—</dd></div>
+      <div><dt>Department</dt><dd id="job-department">—</dd></div>
+      <div><dt>Type</dt><dd id="job-type">—</dd></div>
+      <div><dt>Reference</dt><dd id="job-code">—</dd></div>
+    </dl>
+
+    <p class="post-summary" id="job-summary">—</p>
+
+    <section class="post-section" id="sec-about">
+      <h2>About the role</h2>
+      <p id="job-about">—</p>
+    </section>
+
+    <section class="post-section" id="sec-resp">
+      <h2>What you will do</h2>
+      <ul id="job-responsibilities"></ul>
+    </section>
+
+    <section class="post-section" id="sec-req">
+      <h2>What we are looking for</h2>
+      <ul id="job-requirements"></ul>
+    </section>
+
+    <section class="post-section" id="sec-offer">
+      <h2>What we offer</h2>
+      <ul id="job-offer"></ul>
+    </section>
+
+    <div class="apply">
+      <div>
+        <h3>Ready to apply?</h3>
+        <p>Send your CV and a short cover note. We review every application.</p>
+      </div>
+      <a class="apply-btn" id="apply-link" href="mailto:careers@topcrop.tz">Apply for this role →</a>
+    </div>
+  </article>
+</main>
+
+<section class="more">
+  <div class="more-inner">
+    <h3>Other open positions</h3>
+    <div class="other-list" id="other-list"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <div class="row">
+      <div>
+        <div class="word">Top Crop<sup style="font-family: var(--mono); font-size: 10px; letter-spacing: .2em; margin-left: 6px;">TZ</sup></div>
+        <p style="margin: 18px 0 0; max-width: 38ch; color: #C9C5B6; line-height: 1.55;">
+          Premium fruit, grown on 6,600 hectares in Rufiji, Tanzania.
+          A flagship investment of D43, Dubai.
+        </p>
+      </div>
+      <div>
+        <h5>Site</h5>
+        <a href="Top Crop.html#about">About</a>
+        <a href="Top Crop.html#team">Team</a>
+        <a href="Top Crop.html#careers">Careers</a>
+        <a href="Top Crop.html#news">News</a>
+        <a href="Top Crop.html#contact">Contact</a>
+      </div>
+      <div>
+        <h5>Reach us</h5>
+        <a href="mailto:careers@topcrop.tz">careers@topcrop.tz</a>
+        <a href="mailto:hello@topcrop.tz">hello@topcrop.tz</a>
+      </div>
+      <div>
+        <h5>Operations</h5>
+        <p style="color:#C9C5B6;line-height:1.55;margin:0;">Rufiji District<br/>Pwani Region, Tanzania</p>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Top Crop Tanzania Ltd.</span>
+      <span>A D43 Group Company</span>
+    </div>
+  </div>
+</footer>
+
+<script src="careers-data.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const slug = params.get("id");
+  const jobs = window.JOBS || {};
+  const fallbackKey = Object.keys(jobs)[0];
+  const job = jobs[slug] || jobs[fallbackKey];
+
+  document.title = `${job.title} — Careers — Top Crop Tanzania`;
+  document.getElementById("job-title").textContent = job.title;
+  document.getElementById("job-location").textContent = job.location;
+  document.getElementById("job-department").textContent = job.department;
+  document.getElementById("job-type").textContent = job.type;
+  document.getElementById("job-code").textContent = job.code;
+  document.getElementById("job-summary").textContent = job.summary;
+  document.getElementById("job-about").textContent = job.about;
+
+  const fillList = (id, items) => {
+    const ul = document.getElementById(id);
+    ul.innerHTML = "";
+    (items || []).forEach((t) => {
+      const li = document.createElement("li");
+      li.textContent = t;
+      ul.appendChild(li);
+    });
+    if (!items || !items.length) {
+      ul.parentElement.style.display = "none";
+    }
+  };
+  fillList("job-responsibilities", job.responsibilities);
+  fillList("job-requirements", job.requirements);
+  fillList("job-offer", job.offer);
+
+  // Apply link
+  const apply = document.getElementById("apply-link");
+  apply.href = `mailto:careers@topcrop.tz?subject=${encodeURIComponent(`Application — ${job.code} ${job.title}`)}`;
+
+  // Other openings
+  const list = document.getElementById("other-list");
+  Object.entries(jobs)
+    .filter(([k]) => k !== (jobs[slug] ? slug : fallbackKey))
+    .slice(0, 3)
+    .forEach(([k, j]) => {
+      const a = document.createElement("a");
+      a.className = "other-card";
+      a.href = `Job Posting.html?id=${k}`;
+      a.innerHTML = `
+        <div class="code">${j.code}</div>
+        <h4>${j.title}</h4>
+        <div class="loc">${j.location}</div>
+      `;
+      list.appendChild(a);
+    });
+</script>
+</body>
+</html>
