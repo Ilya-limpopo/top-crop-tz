@@ -458,9 +458,10 @@
     slot.className = "slot";
     slot.style.gridColumn = `span ${p.span}`;
     slot.style.height = p.h + "px";
+    const initSrc = p.src ? "/" + String(p.src).replace(/^\/+/, "") : "";
     slot.innerHTML = `
-      ${p.src
-        ? `<img src="${p.src}" alt=""/>`
+      ${initSrc
+        ? `<img src="${initSrc}" alt=""/>`
         : `<div class="empty">No image</div>`}
       <div class="slot-overlay">
         <div class="slot-controls">
