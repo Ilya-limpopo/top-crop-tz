@@ -25,6 +25,18 @@
 }
 
 @media (max-width: 768px) {
+  /* === No cream gap below the dark footer ===
+     On phones the browser's dynamic toolbar / overscroll exposes the page
+     background below the last element. The prototype bg is cream, so a
+     white strip showed under the black footer. Make the document bg match
+     the footer and re-assert cream on the light sections so they don't
+     inherit the dark colour. Desktop is untouched. */
+  html, body { background: var(--ink) !important; }
+  body { overscroll-behavior-y: none !important; }
+  section#intro, section#about, section#team, section#news {
+    background: var(--bg) !important;
+  }
+
   /* === Top nav === */
   nav.tc-nav {
     height: auto !important;
@@ -93,9 +105,14 @@
     gap: 18px !important;
   }
   /* featured tile spans the full row on mobile */
+  /* Featured member behaves like every other tile on mobile: one cell,
+     same 3/4 portrait photo (desktop keeps the big square featured card). */
   section#team [data-tc="team-grid"] > article[data-tc-featured="true"] {
-    grid-column: span 2 !important;
+    grid-column: span 1 !important;
     grid-row: span 1 !important;
+  }
+  section#team [data-tc="team-grid"] > article[data-tc-featured="true"] .ph {
+    aspect-ratio: 3 / 4 !important;
   }
   section#team [data-tc="team-grid"] > article h3 {
     font-size: 18px !important;
@@ -125,6 +142,11 @@
   }
   section#news [data-tc="news-grid"] > a {
     grid-column: span 1 !important;
+  }
+  /* Uniform card photos on mobile: the first (large) card is 16/9 on
+     desktop — force it to 4/3 like the rest. */
+  section#news [data-tc="news-grid"] .ph {
+    aspect-ratio: 4 / 3 !important;
   }
   section#news h3 { font-size: 22px !important; }
 
