@@ -25,17 +25,12 @@
 }
 
 @media (max-width: 768px) {
-  /* === No cream gap below the dark footer ===
-     On phones the browser's dynamic toolbar / overscroll exposes the page
-     background below the last element. The prototype bg is cream, so a
-     white strip showed under the black footer. Make the document bg match
-     the footer and re-assert cream on the light sections so they don't
-     inherit the dark colour. Desktop is untouched. */
-  html, body { background: var(--ink) !important; }
-  body { overscroll-behavior-y: none !important; }
-  section#intro, section#about, section#team, section#news {
-    background: var(--bg) !important;
-  }
+  /* === No white gap below the dark footer ===
+     The page background stays cream (as designed). The white strip that
+     appeared under the black footer was the scroll "bounce" overscroll
+     area exposing the page background — disable rubber-band scrolling so
+     it can't show. Desktop is untouched. */
+  html, body { overscroll-behavior-y: none !important; }
 
   /* === Top nav === */
   nav.tc-nav {
