@@ -115,7 +115,10 @@ app.get('/admin-app.js', (_req, res) => {
 // public site, news/career templates, and every admin page.
 app.get('/mobile-styles.css', (_req, res) => {
   res.set('Content-Type', 'text/css; charset=utf-8');
-  res.set('Cache-Control', IS_PROD ? 'public, max-age=86400' : 'no-store');
+  // `no-cache` = the browser may store it but must revalidate with the
+  // server before reuse (cheap 304 when unchanged). Avoids the stale-CSS
+  // trap where a long max-age pins an outdated stylesheet on the device.
+  res.set('Cache-Control', 'no-cache');
   res.sendFile(path.join(__dirname, 'mobile-styles.css'));
 });
 

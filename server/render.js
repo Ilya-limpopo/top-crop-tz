@@ -33,7 +33,7 @@ function injectIntoHead(html, scriptTag) {
 // One-line responsive overrides — loaded from /mobile-styles.css. Inserted
 // into every rendered page; the static prototype HTML files also reference
 // this file directly so it loads even when bypassing the render layer.
-const MOBILE_LINK = '<link rel="stylesheet" href="/mobile-styles.css">';
+const MOBILE_LINK = '<link rel="stylesheet" href="/mobile-styles.css?v=2">';
 function injectMobileLink(html) {
   if (html.includes(MOBILE_LINK)) return html;
   if (html.includes('</head>')) return html.replace('</head>', `  ${MOBILE_LINK}\n</head>`);
